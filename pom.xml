@@ -93,6 +93,9 @@
 				</executions>
 				<configuration>
 					<repository>wglgg/ttsweb</repository>
+                    <buildArgs>
+                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
 				</configuration>
 			</plugin>
 		</plugins>
