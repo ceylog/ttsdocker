@@ -17,5 +17,5 @@
 
     docker run --rm -p 8888:8080 wglgg/ttsweb
         
-访问http://localhost:8888/index.html即可试试效果啦:smirk:
+访问http://localhost:8888/index.html 即可试试效果啦:smirk:
 
