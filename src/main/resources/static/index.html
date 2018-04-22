@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="description" content="tts"/>
+    <meta name="keywords" content="tts"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>TTS</title>
+    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css"/>
+    <style>
+        .amz-container {
+            /*margin-left: auto;*/
+            margin-right: auto;
+            width: 100%;
+            max-width: 1000px;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+        .amz-banner {
+            background: url(data:image/png;base64,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) left top #f5f5f5;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="amz-banner">
+    <div class="amz-container am-scrollspy-init am-scrollspy-inview am-animation-scale-up" data-am-scrollspy="{animation: 'scale-up', repeat: false}">
+        <h1>语音合成（Text to Speech，TTS）系统</h1>
+        <p>语音合成，又称文语转换（Text to Speech，TTS）技术，涉及声学、语言学、数字信号处理、计算机科学等多个学科技术，是中文信息处理领域的一项前沿技术，解决的主要问题是如何将文字信息转化为可听的声音信息，也即“让机器像人一样开口说话”。</p>
+    </div>
+</div>
+
+<form class="am-form">
+    <fieldset>
+        <div class="am-form-group">
+            <label for="text">文本</label>
+            <textarea id="text" rows="5"></textarea>
+        </div>
+        <div class="am-form-group">
+            <label for="voiceName">声音</label>
+            <select id="voiceName">
+                <option value="vinn">楠楠</option>
+                <option value="vixx">小新</option>
+                <option value="vixx">小新</option>
+                <option value="xiaoyan">小燕</option>
+                <option value="xiaoyu">小宇</option>
+                <option value="vixy">小研</option>
+            </select>
+            <span class="am-form-caret"></span>
+        </div>
+        <p>
+            <button id="btn_submit" type="button" class="am-btn am-btn-primary am-radius btn-loading-example">发 送</button>
+        </p>
+    </fieldset>
+</form>
+
+<section data-am-widget="accordion" class="am-accordion am-accordion-basic" data-am-accordion='{  }'>
+    <dl class="am-accordion-item am-active">
+        <dt class="am-accordion-title">
+            历史纪录
+        </dt>
+        <dd class="am-accordion-bd am-collapse am-in">
+            <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+            <div class="am-accordion-content">
+                <table class="am-table am-table-bordered am-table-radius am-table-striped am-table-hover">
+                    <thead>
+                    <tr>
+                        <th>文本</th>
+                        <th>声音</th>
+                        <th>状态</th>
+                        <th>时间</th>
+                        <th>播放</th>
+                        <th>下载</th>
+                    </tr>
+                    </thead>
+                    <tbody id="list"></tbody>
+                </table>
+            </div>
+        </dd>
+    </dl>
+</section>
+
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
+<script src="https://cdn.bootcss.com/audiojs/1.0.1/audio.min.js"></script>
+<script>
+    var btn_sub = $('#btn_submit');
+    var text = $('#text');
+    var voiceName = $("#voiceName");
+    var list = $('#list');
+    var logData = [];
+    $(function () {
+        var lsd = sessionStorage.getItem("logData");
+        if (lsd) {
+            logData = JSON.parse(lsd);
+            renderGrid();
+        }
+        btn_sub.click(function () {
+            btn_sub.button('loading');
+            var dt = {'text': text.val(), 'voiceName': voiceName.val()};
+            $.post('api/tts/t', dt, function (data) {
+                if (data.success) {
+                    dt.status = 0;
+                    dt.fileName = data.data;
+                } else {
+                    dt.status = -1;
+                }
+                dt.createTime = new Date();
+                logData.push(dt);
+                renderGrid();
+                btn_sub.button('reset');
+                sessionStorage.setItem("logData", JSON.stringify(logData));
+            })
+
+        });
+    });
+    function renderGrid() {
+        list.empty();
+        if (logData) {
+            for(var i = logData.length; i>0; i--){
+                var val = logData[i-1];
+                //console.log(val);
+                var stt = '<span class="am-badge am-radius">failure</span>';
+                var sty = "am-danger";
+                var opt = '<span class="am-badge am-radius">nan</span>';
+                var dow = '';
+                var dtt = val.createTime;
+                if (val.status == 0) {
+                    stt = '<span class="am-badge am-badge-success am-radius">success</span>';
+                    sty = 'am-success';
+                    opt = '<audio src="api/tts/d?fname='+val.fileName+'" preload="none"/>';
+                    dow = '<a class="am-badge am-badge-secondary am-radius" target="_blank" href="api/tts/d?fname=' + val.fileName + '">download</a>';
+                }
+                var tr = "<tr class=" + sty + "><td>" +
+                    val.text + "</td><td>"
+                    + val.voiceName + "</td><td>" +
+                    stt + "</td><td>" +
+                    dtt +'</td><td>'+
+                    opt + "</td><td>"+
+                    dow + "</td></tr>";
+                list.append(tr);
+            }
+            audiojs.events.ready(function() {
+                var as = audiojs.createAll();
+            });
+        }
+    }
+</script>
+</body>
+</html>
