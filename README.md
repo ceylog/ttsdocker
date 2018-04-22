@@ -7,17 +7,15 @@
 #使用方法
 1.   打包程序
 
-mvn package -DskipTests
+    mvn package -DskipTests
 
-2.   构建镜像
+2.   <del>构建镜像</del>(已集成dockerfile的maven插件，打包后会自动构建镜像)
 
-    docker build -t ttsweb .
+    docker build -t wglgg/ttsweb .
 
 3.运行
 
-    docker run --rm -p 8888:8080 ttsweb
-    
-
-
+    docker run --rm -p 8888:8080 wglgg/ttsweb
+        
 访问http://localhost:8888/index.html
 
