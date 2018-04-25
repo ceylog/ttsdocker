@@ -90,11 +90,7 @@
     var list = $('#list');
     var logData = [];
     $(function () {
-        var lsd = sessionStorage.getItem("logData");
-        if (lsd) {
-            logData = JSON.parse(lsd);
-            renderGrid();
-        }
+
         btn_sub.click(function () {
             btn_sub.button('loading');
             var dt = {'text': text.val(), 'voiceName': voiceName.val()};
@@ -109,7 +105,6 @@
                 logData.push(dt);
                 renderGrid();
                 btn_sub.button('reset');
-                sessionStorage.setItem("logData", JSON.stringify(logData));
             })
 
         });
@@ -128,7 +123,7 @@
                 if (val.status == 0) {
                     stt = '<span class="am-badge am-badge-success am-radius">success</span>';
                     sty = 'am-success';
-                    opt = '<audio src="api/tts/d?fname='+val.fileName+'" preload="none"/>';
+                    opt = '<audio src="api/tts/d?fname='+val.fileName+'" preload="auto" controls/>';
                     dow = '<a class="am-badge am-badge-secondary am-radius" target="_blank" href="api/tts/d?fname=' + val.fileName + '">download</a>';
                 }
                 var tr = "<tr class=" + sty + "><td>" +
@@ -140,9 +135,6 @@
                     dow + "</td></tr>";
                 list.append(tr);
             }
-            audiojs.events.ready(function() {
-                var as = audiojs.createAll();
-            });
         }
     }
 </script>
